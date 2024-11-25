@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Product List{% endblock %}
+{% block content %}
+
+ <h1>Shopping Cart</h1>
+    {% if cart_items %}
+        {{ cart_items }}
+        <ul>
+            {% for item in cart_items %}
+                <li>
+                    <img src="{{ item.image.url }}" alt="{{ item.name }}" style="width: 60px; height: 60px;">
+                    {{ item.quantity }} x {{ item.name }} - ${{ item.price }} each
+                </li>
+            {% endfor %}
+        </ul>
+        <p>Total Price: ${{ total_price }}</p>
+        <button>Proceed to Checkout</button>
+    {% else %}
+        <p>Your cart is empty.</p>
+    {% endif %}
+{% endblock content %}

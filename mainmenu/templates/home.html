@@ -1,0 +1,89 @@
+<html lang="en">
+
+<head>
+    {% extends 'base.html' %}
+    {% block title %}Home{% endblock %}
+    {% block content %}
+</head>
+
+<style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+    .display-4 {
+        font-size: 2.5rem;
+        font-weight: 300;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 30px;
+    }
+
+    .card {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin: 10px;
+        width: 80%;
+        max-width: 600px;
+    }
+
+    .card h2 {
+        margin-top: 0;
+    }
+
+    .card ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .card ul li::before {
+        content: "• ";
+        color: #007BFF;
+    }
+
+
+</style>
+
+<body>
+    <div>
+        <h1 class="display-4">Welcome to the Library Book and Vehicle Rental Portal!</h1>
+    </div>
+    <div class="content">
+        <div class="card">
+            <h2>About Us</h2>
+            <p>Welcome to our rental portal! Whether you need to rent books or vehicles, we have got you covered.</p>
+        </div>
+        <div class="card">
+            <h2>Library Book Rental</h2>
+            <ul>
+                <li>Rent books from a wide variety of genres.</li>
+                <li>Access to both fiction and non-fiction books.</li>
+                <li>Flexible rental periods to suit your needs.</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h2>Vehicle Rental</h2>
+            <ul>
+                <li>Choose from a range of vehicles, including cars and motorcycles.</li>
+                <li>Competitive rental prices and flexible terms.</li>
+                <li>Easy and convenient booking process.</li>
+            </ul>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+
+</html>

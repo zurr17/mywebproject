@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'base.html' %}
+{% block title %}About Us{% endblock %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>About Us</title>
+    <style>
+        .about-container {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .about-container h1 {
+            color: #0066cc;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .about-container h2 {
+            color: #0044cc;
+        }
+        .about-container p {
+            font-size: 16px;
+            padding: 0 10px;
+        }
+        .about-container section {
+            background: white;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+        }
+        .about-container ul {
+            list-style: none;
+            padding: 0;
+        }
+        .about-container ul li {
+            background: #e2e2e2;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, .1);
+        }
+        .about-container a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        .about-container a:hover {
+            text-decoration: underline;
+        }
+            .btn {
+        background-color: #007BFF;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background-color: #0056b3;
+    }
+    </style>
+</head>
+<body>
+<div class="about-container">
+    <h1>About Us</h1>
+    <section>
+        <h2>Our Mission</h2>
+        <p>Welcome to our Library and Vehicle Rental service. Our mission is to provide easy access to a wide range of books and vehicles for our community. We aim to make both reading and traveling accessible and convenient for everyone.</p>
+    </section>
+    <section>
+        <h2>Our Services</h2>
+        <ul>
+            <li>Extensive collection of books across various genres</li>
+            <li>Convenient vehicle rental options for short-term and long-term needs</li>
+            <li>Friendly and knowledgeable staff ready to assist you</li>
+            <li>Online booking and reservation system</li>
+        </ul>
+    </section>
+    <section class="card">
+
+            <form method="post" action="{% url 'contact' %}">
+                {% csrf_token %}
+                <h2>Contact Us</h2>
+                <p>If you have any questions or need further information, please don't hesitate to contact us.</p>
+                <button type="submit" class="btn">Contact Us</button>
+            </form>
+
+    </section>
+</div>
+</body>
+{% endblock %}
+</html>

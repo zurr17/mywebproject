@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Vehicle Rental{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <form action="" method="get">
+        <div class="mb-4">
+            <label class="form-label">Find Vehicle</label>
+            <div class="input-group">
+                <input type="text" name="motor" class="form-control" placeholder="Search for vehicle">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        {% for i in motors %}
+        <div class="col-md-3 mb-3">
+            <div class="card" style="width: 100%; height: 25rem;">
+                <div class="card-img-top" style="height: 100%; overflow: hidden;">
+                    <a href="{% url 'motordetail' i.id %}">
+                         <img src="{{ i.gambar.url }}" class="card-img-top" alt="{{ i.name }}" style="object-fit: cover; height: 80%; width: 80%; display: block; margin: 20px auto 0;">
+                    </div>
+                      <div class="card-body" style="height: 40%; overflow: hidden;">
+                    <h5 class="card-title" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ i.nama }}</h5>
+                    <a href="{% url 'motordetail' i.id %}" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

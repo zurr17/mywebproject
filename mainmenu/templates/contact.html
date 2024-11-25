@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block title %}Contact Us{% endblock %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+        }
+        textarea.form-control {
+            height: 100px;
+        }
+        button[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Contact Us</h2>
+    <form method="post" action="{% url 'contact_thank_you' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_name">Name:</label>
+            <input type="text" name="name" id="id_name" class="form-control" required>
+            {{ form.name }}
+        </div>
+        <div class="form-group">
+            <label for="id_email">Email:</label>
+            <input type="email" name="email" id="id_email" class="form-control" required>
+            {{ form.email }}
+        </div>
+        <div class="form-group">
+            <label for="id_message">Message:</label>
+            <textarea name="message" id="id_message" class="form-control" required></textarea>
+            {{ form.message }}
+        </div>
+        <div class="form-group">
+            <button type="submit">Send</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
+{% endblock %}

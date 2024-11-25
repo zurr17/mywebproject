@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<center>
+<div class="card" style="width:25%">
+    <div class="card-body">
+    <img alt="" class="card-img-top" src="{{ book.image.url }}"/>
+    <div class="card-body">
+        <h5  class="card-title fw-bold">
+            {{ book.title }}
+            <br/>
+            {{ book.date|date:"d-m-Y" }}
+        </h5>
+        <p class="card-text">
+            Author: {{ book.author }}
+            <br class="mb-2"/>
+            Description:
+            <br/>
+            {{ book.description }}
+        </p>
+    </div>
+    </div>
+</div>
+<!--    Review-->
+    <div class="mt-4">
+    <h4>Add Review</h4>
+    <form method='post'>
+        {% csrf_token %}
+        <div class="mb-3 w-50">
+            <label for="id_name" class="form-label">Your Name</label>
+            <input type="text" name="name" id="id_name" class="form-control" required>
+        </div>
+        <div class="mb-3 w-50">
+            <label for="id_comment" class="for-label">Comment</label>
+            <textarea name="comment" id="id_comment" class="form-control"></textarea>
+        </div>
+        <div class="mb-3 w-50">
+            <label for="id_rating" class="form-label">Rating</label>
+            <div class="d_flex align-items-center">
+                <input type="range" name="rating" id="id_rating" class="form-range" min="1" max="5" value="1"
+                       oninput="this.nextElementSibling.value = this.value">
+                <output>1</output>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Review</button>
+    </form>
+</div>
+    <div class="mt-4">
+    <h4>Reviews</h4>
+    {% for review in reviews %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">{{ review.name }}</h5>
+            <p class="card-text">{{ review.comment }}</p>
+            <p>
+                <strong>Rating:{{review.rating}}</strong>
+            </p>
+        </div>
+    </div>
+    {% empty %}
+    <p class="text-muted"> Belum ada review untuk buku ini.</p>
+    {% endfor %}
+</div>
+</center>
+{% endblock content %}

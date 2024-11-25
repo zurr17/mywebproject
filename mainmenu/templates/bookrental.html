@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block title %}Book Rental{% endblock %}
+{% block content %}
+    <style>
+        #rental-book-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        #rental-book-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        #rental-book-container form {
+            margin-bottom: 20px;
+        }
+
+        #rental-book-container label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        #rental-book-container input[type="text"],
+        #rental-book-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        #rental-book-container button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #rental-book-container button:hover {
+            background-color: #0056b3;
+        }
+
+        #rental-book-container ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #rental-book-container li {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        #rental-book-container li strong {
+            display: block;
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        #rental-book-container li span {
+            display: block;
+            color: #555;
+        }
+    </style>
+
+    <div id="rental-book-container">
+        <h1>Book Rental</h1>
+        <form method="post" action="{% url 'book_rental' %}">
+            {% csrf_token %}
+            <p>
+                <label for="id_name">Name:</label>
+                <input type="text" name="name" id="id_name" required>
+            </p>
+            <p>
+                <label for="id_email">Email Address:</label>
+                <input type="text" name="email" id="id_email" required>
+            </p>
+            <p>
+                <label for="id_message">Message:</label>
+                <textarea name="message" id="id_message" required></textarea>
+            </p>
+            <button type="submit">Submit</button>
+        </form>
+        <h2>Previous Entries</h2>
+        <ul>
+        {% for entry in book_rental_entries %}
+            <li>
+                <strong>{{ entry.name }}</strong>
+                <span>{{ entry.email }}</span>
+                <span>{{ entry.message }}</span>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

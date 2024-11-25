@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Product List{% endblock %}
+{% block content %}
+
+<title>{{ product.name }}</title>
+<div class="container mp-3">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6 col-lg-6">
+            <div class="card mb-3">
+                <div class="card">
+                    <h1>{{ product.name }}</h1>
+                    <img alt="" style="height: 50%; width: 50%" class="card-img-top" src="{{ product.image.url }}">
+                    <p>{{ product.description }}</p>
+                    <p>Rp. {{ product.price }}</p>
+
+                    <form method="POST" action="{% url 'add_to_cart' product.id %}">
+                        {% csrf_token %}
+                        <label for="quantity">Quantity:</label>
+                        <button type="button" onclick="document.getElementById('quantity').stepDown()">-</button>
+                        <input type="number" id="quantity" name="quantity" value="1" min="1" readonly>
+                        <button type="button" onclick="document.getElementById('quantity').stepUp()">+</button>
+                        <button type="submit">Add to Cart</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+

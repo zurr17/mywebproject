@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block title %}Vehicle Detail{% endblock %}
+{% block content %}
+<div class="container mp-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6 col-lg-6">
+
+            <div class="card mb-3">
+                <div class="card">
+                    <img alt="" style="height: 100%; object-fit: cover;" class="card-img-top"
+                         src="{{ motor.gambar.url }}"/>
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">{{ motor.nama }}</h5>
+                        <p class="card-text">
+                            {{ motor.deskripsi }} Stock Available : {{motor.stok }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!--Pesan Berhasil -->
+            {% if pesan_berhasil %}
+            <div class="alert alert-success mt-4">
+                {{ pesan_berhasil }}
+            </div>
+            {% endif %}
+
+            <!--Form Peminjaman-->
+            <!--Pesan Stok Habis-->
+            {% if motor.stok == 0%}
+            <div class="alert alert-warning">
+                Motor ini stok habis tersedia. Silahkan pilih motor lain.
+            </div>
+            {% else %}
+            <div class="mt-4">
+                <h4>Rental Form </h4>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="id_nik" class="form-label">NIK</label>
+                        <input type="text" name="nik" id="id_nik" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_nama_peminjam" class="form-label">Name</label>
+                        <input type="text" name="nama_peminjam" id="id_nama_peminjam" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_tanggal_pinjam" class="form-label">Rental Date</label>
+                        <input type="date" name="tanggal_pinjam" id="id_tanggal_pinjam" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_tanggal_kembali" class="form-label">Return Date</label>
+                        <input type="date" name="tanggal_kembali" id="id_tanggal_kembali" class="form-control" required>
+                    </div>
+                    <center>
+                        <button type="submit" class="btn btn-primary">Process the Rental</button>
+                    </center>
+                </form>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
